@@ -669,19 +669,20 @@ footer {
     mix-blend-mode: normal !important;
     position: fixed;
     flex-wrap: nowrap;
+    z-index: 200; 
   }
   .nav-burger { display: flex; }
   .nav-links {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--black);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    z-index: 99;
-  }
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--black);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  z-index: 150;  /* ← en dessous de la nav */
+}
   .nav-links.open { display: flex; }
   .nav-links a {
     font-size: 1.8rem;
