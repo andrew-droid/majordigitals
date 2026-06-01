@@ -669,9 +669,13 @@ footer {
     mix-blend-mode: normal !important;
     position: fixed;
     flex-wrap: nowrap;
-    z-index: 200; 
+    z-index: 300; 
   }
-  .nav-burger { display: flex; }
+  .nav-burger { 
+  display: flex; 
+  z-index: 300;
+  position: relative;
+}
   .nav-links {
   display: none;
   position: fixed;
