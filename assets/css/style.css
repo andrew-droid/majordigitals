@@ -353,14 +353,15 @@ section { padding: 7rem 4rem; }
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2px;
+  overflow: hidden;
 }
 .project-card {
   position: relative;
   overflow: hidden;
   cursor: none;
 }
-.project-card.large { grid-column: span 7; height: 480px; }
-.project-card.small { grid-column: span 5; height: 480px; }
+.project-card.large { grid-column: span 7;  }
+.project-card.small { grid-column: span 5; }
 .project-card.full { grid-column: span 12; height: 320px; }
 .project-card.medium { grid-column: span 6; height: 380px; }
 
