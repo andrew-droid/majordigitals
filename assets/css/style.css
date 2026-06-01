@@ -353,7 +353,6 @@ section { padding: 7rem 4rem; }
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2px;
-  align-items: stretch;
 }
 .project-card {
   position: relative;
@@ -648,5 +647,3 @@ footer {
   .project-card.full { grid-column: span 1; }
   .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
 }
-
-
