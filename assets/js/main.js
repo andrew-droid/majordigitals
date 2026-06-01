@@ -155,10 +155,13 @@ const navMenu = document.getElementById('nav-menu');
 burger.addEventListener('click', () => {
   burger.classList.toggle('open');
   navMenu.classList.toggle('open');
+  // empêche le scroll quand menu ouvert
+  document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : '';
 });
 document.querySelectorAll('.nav-close').forEach(link => {
   link.addEventListener('click', () => {
     burger.classList.remove('open');
     navMenu.classList.remove('open');
+    document.body.style.overflow = '';
   });
 });
