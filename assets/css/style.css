@@ -359,7 +359,7 @@ section { padding: 7rem 4rem; }
   overflow: hidden;
   cursor: none;
 }
-.project-card.large { grid-column: span 7; }
+.project-card.large { grid-column: span 6; }
 .project-card.small { grid-column: span 5; }
 .project-card.full { grid-column: span 12; height: 320px; }
 .project-card.medium { grid-column: span 6; }
