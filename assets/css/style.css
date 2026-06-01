@@ -642,7 +642,29 @@ footer {
 
 /* Responsive */
 @media (max-width: 1024px) {
-  nav { padding: 1.5rem 2rem; }
+  nav {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    background: var(--black);
+    mix-blend-mode: normal;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+    background: rgba(212,168,83,0.08);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    border-radius: 2px;
+  }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    opacity: 1;
+    color: var(--accent);
+  }
+  .nav-logo img { height: 35px; }
   section { padding: 5rem 2rem; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { display: none; }
