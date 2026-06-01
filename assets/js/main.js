@@ -48,6 +48,8 @@ reveals.forEach(el => observer.observe(el));
 // Contact form
 const form = document.getElementById('contact-form');
 
+const whatsappNumber = "233536203006"; // Ghana format without +
+
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -55,31 +57,54 @@ if (form) {
     const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
 
-    btn.textContent = 'Envoi...';
+    btn.textContent = "Envoi...";
     btn.disabled = true;
 
+    const formData = new FormData(form);
+
+    // Build message for WhatsApp fallback
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const subject = formData.get("subject") || "No subject";
+    const message = formData.get("message");
+
+    const whatsappMessage =
+`New Portfolio Message:
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}`;
+
     try {
+      // 1. Try Formspree first
       const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
+        method: "POST",
+        body: formData,
         headers: {
-          Accept: 'application/json'
+          Accept: "application/json"
         }
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        btn.textContent = 'Message envoyé ✓';
+        btn.textContent = "Message envoyé ✓";
         form.reset();
       } else {
-        console.log(data);
-        btn.textContent = 'Erreur Formspree ❌';
+        throw new Error("Formspree failed");
       }
 
     } catch (error) {
-      console.log(error);
-      btn.textContent = 'Erreur réseau ❌';
+      console.log("Formspree failed → WhatsApp fallback activated");
+
+      btn.textContent = "Redirection WhatsApp...";
+
+      // 2. WhatsApp fallback
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(url, "_blank");
+
+      btn.textContent = "Envoyé via WhatsApp ✓";
     }
 
     setTimeout(() => {
