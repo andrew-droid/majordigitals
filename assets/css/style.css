@@ -352,7 +352,7 @@ section { padding: 7rem 4rem; }
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 0;
+  gap: 2px;
 }
 .project-card {
   position: relative;
@@ -378,12 +378,9 @@ section { padding: 7rem 4rem; }
 }
 .project-card.full .project-thumb { min-height: 320px; }
 .project-thumb img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .project-card:hover .project-thumb img { transform: scale(1.05); }
@@ -430,8 +427,8 @@ section { padding: 7rem 4rem; }
 
 /* Thumb placeholder */
 .thumb-placeholder {
-  position: absolute;
-  inset: 0;
+  width: 100%;
+  height: 100%;
   background: var(--gray);
   display: flex;
   align-items: center;
