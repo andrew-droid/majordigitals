@@ -47,22 +47,45 @@ reveals.forEach(el => observer.observe(el));
 
 // Contact form
 const form = document.getElementById('contact-form');
+
 if (form) {
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
     const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Message envoyé ✓';
-    btn.style.background = 'var(--accent)';
-    btn.style.color = 'var(--black)';
+    btn.textContent = 'Envoi...';
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        btn.textContent = 'Message envoyé ✓';
+        btn.style.background = 'var(--accent)';
+        btn.style.color = 'var(--black)';
+        form.reset();
+      } else {
+        btn.textContent = 'Erreur envoi ❌';
+      }
+
+    } catch (error) {
+      btn.textContent = 'Erreur réseau ❌';
+    }
+
     setTimeout(() => {
       btn.textContent = 'Envoyer le message';
       btn.style.background = '';
       btn.style.color = '';
-      form.reset();
     }, 3000);
   });
 }
-
 // Smooth nav highlight
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
