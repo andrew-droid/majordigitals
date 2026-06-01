@@ -53,36 +53,38 @@ if (form) {
     e.preventDefault();
 
     const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Envoi...';
+    const originalText = btn.textContent;
 
-    const formData = new FormData(form);
+    btn.textContent = 'Envoi...';
+    btn.disabled = true;
 
     try {
       const response = await fetch(form.action, {
         method: 'POST',
-        body: formData,
+        body: new FormData(form),
         headers: {
           Accept: 'application/json'
         }
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         btn.textContent = 'Message envoyé ✓';
-        btn.style.background = 'var(--accent)';
-        btn.style.color = 'var(--black)';
         form.reset();
       } else {
-        btn.textContent = 'Erreur envoi ❌';
+        console.log(data);
+        btn.textContent = 'Erreur Formspree ❌';
       }
 
     } catch (error) {
+      console.log(error);
       btn.textContent = 'Erreur réseau ❌';
     }
 
     setTimeout(() => {
-      btn.textContent = 'Envoyer le message';
-      btn.style.background = '';
-      btn.style.color = '';
+      btn.textContent = originalText;
+      btn.disabled = false;
     }, 3000);
   });
 }
