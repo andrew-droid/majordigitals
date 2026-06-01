@@ -640,44 +640,8 @@ footer {
 }
 @keyframes load { to { width: 100%; } }
 
-/* Responsive */
-@media (max-width: 1024px) {
- nav {
-  padding: 1rem 1.5rem;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  background: var(--black) !important;
-  mix-blend-mode: normal !important;
-}
-.nav-links {
-  width: 100%;
-  justify-content: space-between;
-  background: rgba(212,168,83,0.1);
-  border: 1px solid rgba(212,168,83,0.3);
-  padding: 0.6rem 1rem;
-}
-.nav-links a {
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  color: var(--accent) !important;
-  opacity: 1 !important;
-}
-  .nav-logo img { height: 35px; }
-  section { padding: 5rem 2rem; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
-  .hero-left { padding: 8rem 2rem 4rem; }
-  .about-grid { grid-template-columns: 1fr; }
-  .contact-section { grid-template-columns: 1fr; gap: 3rem; }
-  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .project-card.large,
-  .project-card.small,
-  .project-card.medium,
-  .project-card.full { grid-column: span 1; }
-  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-}
 
+/* Responsive */
 .nav-burger {
   display: none;
   flex-direction: column;
@@ -727,6 +691,20 @@ footer {
     letter-spacing: 0.05em;
   }
   .nav-links a:hover { color: var(--accent) !important; }
+  .nav-logo img { height: 35px; }
+  section { padding: 5rem 2rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 8rem 2rem 4rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-card.large,
+  .project-card.small,
+  .project-card.medium,
+  .project-card.full { grid-column: span 1; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
 }
 
 /* Motion Box Animation */
