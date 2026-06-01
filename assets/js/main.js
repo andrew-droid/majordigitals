@@ -149,3 +149,16 @@ window.addEventListener('scroll', () => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
   });
 });
+
+const burger = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+});
+document.querySelectorAll('.nav-close').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navMenu.classList.remove('open');
+  });
+});
