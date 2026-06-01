@@ -141,6 +141,7 @@ ${message}`;
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
+  if (navMenu.classList.contains('open')) return;
   let current = '';
   sections.forEach(s => {
     if (window.scrollY >= s.offsetTop - 200) current = s.id;
@@ -149,7 +150,6 @@ window.addEventListener('scroll', () => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
   });
 });
-
 const burger = document.getElementById('burger');
 const navMenu = document.getElementById('nav-menu');
 burger.addEventListener('click', () => {
