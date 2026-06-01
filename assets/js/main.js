@@ -48,7 +48,12 @@ reveals.forEach(el => observer.observe(el));
 // Contact form
 const form = document.getElementById('contact-form');
 
-const whatsappNumber = "233536203006"; // Ghana format without +
+const whatsappNumber = "233536203006";
+
+// Detect mobile device
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
 
 if (form) {
   form.addEventListener('submit', async (e) => {
@@ -62,7 +67,7 @@ if (form) {
 
     const formData = new FormData(form);
 
-    // Build message for WhatsApp fallback
+    // Extract form values
     const name = formData.get("name");
     const email = formData.get("email");
     const subject = formData.get("subject") || "No subject";
@@ -78,8 +83,29 @@ Subject: ${subject}
 Message:
 ${message}`;
 
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    // =========================
+    // 📱 MOBILE → WhatsApp FIRST
+    // =========================
+    if (isMobileDevice()) {
+      btn.textContent = "Ouverture WhatsApp...";
+
+      window.open(whatsappURL, "_blank");
+
+      setTimeout(() => {
+        btn.textContent = "Envoyé via WhatsApp ✓";
+        form.reset();
+        btn.disabled = false;
+      }, 1500);
+
+      return;
+    }
+
+    // =========================
+    // 💻 DESKTOP → EMAIL FIRST
+    // =========================
     try {
-      // 1. Try Formspree first
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,
@@ -96,13 +122,11 @@ ${message}`;
       }
 
     } catch (error) {
-      console.log("Formspree failed → WhatsApp fallback activated");
+      console.log("Email failed → WhatsApp fallback");
 
       btn.textContent = "Redirection WhatsApp...";
 
-      // 2. WhatsApp fallback
-      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-      window.open(url, "_blank");
+      window.open(whatsappURL, "_blank");
 
       btn.textContent = "Envoyé via WhatsApp ✓";
     }
