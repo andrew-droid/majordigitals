@@ -681,7 +681,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 2.5rem;
-  z-index: 150;  /* ← en dessous de la nav */
+  z-index: 100;  /* ← en dessous de la nav */
 }
   .nav-links.open { display: flex; }
   .nav-links a {
