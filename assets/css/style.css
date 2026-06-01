@@ -352,7 +352,7 @@ section { padding: 7rem 4rem; }
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 2px;
+  gap: 0px;
 }
 .project-card {
   position: relative;
