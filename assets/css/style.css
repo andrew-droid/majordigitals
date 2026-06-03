@@ -742,3 +742,35 @@ footer {
 .project-card:hover .mo-ring-1{animation-duration:5s;} .project-card:hover .mo-ring-2{animation-duration:9s;} .project-card:hover .mo-ring-3{animation-duration:14s;}
 .project-card:hover .mo-label{color:rgba(212,168,83,0.6);transition:all 0.5s ease;}
 @media(max-width:1024px){.mo-ring-1{width:160px;height:160px;} .mo-ring-2{width:280px;height:280px;} .mo-ring-3{width:380px;height:380px;} .mo-label{font-size:1rem;letter-spacing:0.2em;}}
+
+/* ── Language Switcher ── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.lang-switcher {
+  background: none;
+  border: 1px solid var(--border);
+  color: rgba(245,240,232,0.5);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color 0.3s;
+}
+.lang-switcher:hover { border-color: var(--accent); }
+.lang-sep { color: var(--border); font-size: 0.6rem; }
+.lang-active {
+  color: var(--accent) !important;
+  font-weight: 500;
+}
+/* Hide burger on desktop */
+@media (min-width: 1025px) {
+  .nav-burger { display: none !important; }
+  .nav-right { gap: 0; }
+}
