@@ -11,10 +11,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="manifest" href="site.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
 </head>
 <body>
 
@@ -29,56 +29,63 @@
   <div class="cursor-ring"></div>
 
   <!-- Nav -->
- <nav>
-  <a href="#" class="nav-logo">
-    <img src="assets/images/logo.png" alt="Major Digitals" />
-  </a>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <ul class="nav-links" id="nav-menu">
-    <li><a href="#about" class="nav-close">À propos</a></li>
-    <li><a href="#projects" class="nav-close">Projets</a></li>
-    <li><a href="#experience" class="nav-close">Expérience</a></li>
-    <li><a href="#contact" class="nav-close">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="assets/images/logo.png" alt="Major Digitals" />
+    </a>
+    <div class="nav-right">
+      <!-- Language switcher -->
+      <button class="lang-switcher" id="lang-btn" aria-label="Switch language">
+        <span class="lang-fr">FR</span>
+        <span class="lang-sep">|</span>
+        <span class="lang-en">EN</span>
+      </button>
+      <button class="nav-burger" id="burger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#about" class="nav-close" data-fr="À propos" data-en="About">À propos</a></li>
+      <li><a href="#projects" class="nav-close" data-fr="Projets" data-en="Projects">Projets</a></li>
+      <li><a href="#experience" class="nav-close" data-fr="Expérience" data-en="Experience">Expérience</a></li>
+      <li><a href="#contact" class="nav-close" data-fr="Contact" data-en="Contact">Contact</a></li>
+    </ul>
+  </nav>
 
   <!-- Hero -->
   <header class="hero">
     <div class="hero-left">
-      <div class="hero-tag reveal">Creative Designer</div>
+      <div class="hero-tag reveal" data-fr="Creative Designer" data-en="Creative Designer">Creative Designer</div>
       <h1 class="hero-title reveal reveal-delay-1">
         Andrew<br><em>Ofori</em><br>Amponsah
       </h1>
-      <p class="hero-subtitle reveal reveal-delay-2">
+      <p class="hero-subtitle reveal reveal-delay-2" data-fr="Web Design · Branding · Motion Design<br>Je transforme vos idées en expériences visuelles qui marquent les esprits." data-en="Web Design · Branding · Motion Design<br>I turn your ideas into visual experiences that leave a lasting impression.">
         Web Design · Branding · Motion Design<br>
         Je transforme vos idées en expériences visuelles qui marquent les esprits.
       </p>
       <div class="hero-cta reveal reveal-delay-3">
-        <a href="#projects" class="btn-primary">Voir mes projets</a>
-        <a href="#contact" class="btn-secondary">Me contacter →</a>
+        <a href="#projects" class="btn-primary" data-fr="Voir mes projets" data-en="View my work">Voir mes projets</a>
+        <a href="#contact" class="btn-secondary" data-fr="Me contacter →" data-en="Contact me →">Me contacter →</a>
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-image-wrap">
-        <!-- Replace src with your actual photo: assets/images/andrew.jpg -->
         <img src="assets/images/andrew.jpg" alt="Andrew Ofori Amponsah" onerror="this.style.display='none';this.parentElement.style.background='#1a1a1a'" />
       </div>
       <div class="hero-stats">
         <div class="stat-item">
           <div class="stat-num">+3</div>
-          <div class="stat-label">Années<br>d'expérience</div>
+          <div class="stat-label" data-fr="Années<br>d'expérience" data-en="Years of<br>experience">Années<br>d'expérience</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">+15</div>
-          <div class="stat-label">Projets<br>réalisés</div>
+          <div class="stat-label" data-fr="Projets<br>réalisés" data-en="Projects<br>completed">Projets<br>réalisés</div>
         </div>
         <div class="stat-item">
           <div class="stat-num">+10</div>
-          <div class="stat-label">Clients<br>satisfaits</div>
+          <div class="stat-label" data-fr="Clients<br>satisfaits" data-en="Happy<br>clients">Clients<br>satisfaits</div>
         </div>
       </div>
     </div>
@@ -91,16 +98,15 @@
       <span>Branding</span><span class="dot">✦</span>
       <span>Motion Design</span><span class="dot">✦</span>
       <span>UI/UX</span><span class="dot">✦</span>
-      <span>Identité Visuelle</span><span class="dot">✦</span>
+      <span data-fr="Identité Visuelle" data-en="Visual Identity">Identité Visuelle</span><span class="dot">✦</span>
       <span>Adobe Creative Suite</span><span class="dot">✦</span>
       <span>WordPress</span><span class="dot">✦</span>
       <span>HTML · CSS · JS</span><span class="dot">✦</span>
-      <!-- duplicate for seamless loop -->
       <span>Web Design</span><span class="dot">✦</span>
       <span>Branding</span><span class="dot">✦</span>
       <span>Motion Design</span><span class="dot">✦</span>
       <span>UI/UX</span><span class="dot">✦</span>
-      <span>Identité Visuelle</span><span class="dot">✦</span>
+      <span data-fr="Identité Visuelle" data-en="Visual Identity">Identité Visuelle</span><span class="dot">✦</span>
       <span>Adobe Creative Suite</span><span class="dot">✦</span>
       <span>WordPress</span><span class="dot">✦</span>
       <span>HTML · CSS · JS</span><span class="dot">✦</span>
@@ -111,15 +117,15 @@
   <section id="about">
     <div class="about-grid">
       <div class="about-text">
-        <div class="section-label reveal">À propos</div>
-        <h2 class="section-title reveal reveal-delay-1">Créer, c'est<br><em>raconter</em></h2>
-        <p class="reveal reveal-delay-2">
+        <div class="section-label reveal" data-fr="À propos" data-en="About">À propos</div>
+        <h2 class="section-title reveal reveal-delay-1" data-fr="Créer, c'est<br><em>raconter</em>" data-en="Design is<br><em>storytelling</em>">Créer, c'est<br><em>raconter</em></h2>
+        <p class="reveal reveal-delay-2" data-fr="Creative Designer basé entre le Ghana et la Côte d'Ivoire, je suis spécialisé en web design, branding, motion design et expériences digitales modernes." data-en="Creative Designer based between Ghana and Côte d'Ivoire, specializing in web design, branding, motion design and modern digital experiences.">
           Creative Designer basé entre le Ghana et la Côte d'Ivoire, je suis spécialisé en web design, branding, motion design et expériences digitales modernes.
         </p>
-        <p class="reveal reveal-delay-2">
+        <p class="reveal reveal-delay-2" data-fr="Titulaire d'un Master en Informatique — Développeur d'applications (ITA, Abidjan), j'allie maîtrise technique et sens artistique pour concevoir des solutions visuelles qui vont au-delà de l'esthétique : elles communiquent, engagent et convertissent." data-en="Holding a Master's degree in Computer Science — Application Developer (ITA, Abidjan), I combine technical expertise and artistic sensibility to craft visual solutions that go beyond aesthetics: they communicate, engage, and convert.">
           Titulaire d'un Master en Informatique — Développeur d'applications (ITA, Abidjan), j'allie maîtrise technique et sens artistique pour concevoir des solutions visuelles qui vont au-delà de l'esthétique : elles communiquent, engagent et convertissent.
         </p>
-        <p class="reveal reveal-delay-2">
+        <p class="reveal reveal-delay-2" data-fr="Passionné par le storytelling visuel, je travaille avec des marques, des entreprises et des organisations pour donner vie à leurs identités digitales." data-en="Passionate about visual storytelling, I work with brands, businesses and organizations to bring their digital identities to life.">
           Passionné par le storytelling visuel, je travaille avec des marques, des entreprises et des organisations pour donner vie à leurs identités digitales.
         </p>
         <div class="about-skills reveal reveal-delay-3">
@@ -137,13 +143,11 @@
       </div>
       <div class="about-visual reveal reveal-delay-2">
         <div class="about-img-frame">
-          <!-- Replace with your actual photo -->
           <img src="assets/images/andrew-profile.jpg" alt="Andrew Ofori" onerror="this.style.display='none'" />
           <div class="about-img-placeholder" id="about-placeholder">
             <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
             </svg>
-            <span>Ajouter votre photo</span>
           </div>
         </div>
       </div>
@@ -152,21 +156,19 @@
 
   <!-- Projects -->
   <section id="projects" class="projects-section">
-    <div class="section-label reveal">Projets</div>
-    <h2 class="section-title reveal reveal-delay-1">Mes <em>réalisations</em></h2>
-
+    <div class="section-label reveal" data-fr="Projets" data-en="Projects">Projets</div>
+    <h2 class="section-title reveal reveal-delay-1" data-fr="Mes <em>réalisations</em>" data-en="My <em>work</em>">Mes <em>réalisations</em></h2>
     <div class="projects-grid">
 
       <!-- Project 1 — DJASTICE -->
       <div class="project-card large reveal">
         <div class="project-thumb">
           <img src="assets/images/project-djastice.jpg" alt="Djastice" onerror="this.style.display='none'" />
-          <!-- <div class="thumb-placeholder">DJASTICE</div> -->
         </div>
         <div class="project-overlay">
-          <div class="project-cat">Branding · Web Design</div>
-          <div class="project-name">Djastice — Identité Visuelle & Site</div>
-          <a href="https://djastice.com/" target="_blank" rel="noopener" class="project-link">Voir le projet →</a>
+          <div class="project-cat" data-fr="Branding · Web Design" data-en="Branding · Web Design">Branding · Web Design</div>
+          <div class="project-name" data-fr="Djastice — Identité Visuelle & Site" data-en="Djastice — Visual Identity & Website">Djastice — Identité Visuelle & Site</div>
+          <a href="https://djastice.com/" target="_blank" rel="noopener" class="project-link" data-fr="Voir le projet →" data-en="View project →">Voir le projet →</a>
         </div>
       </div>
 
@@ -174,12 +176,11 @@
       <div class="project-card small reveal reveal-delay-1">
         <div class="project-thumb">
           <img src="assets/images/project-church.jpg" alt="Eglise du Christ" onerror="this.style.display='none'" />
-          <!-- <div class="thumb-placeholder">CHURCH OF CHRIST</div> -->
         </div>
         <div class="project-overlay">
-          <div class="project-cat">Web Design · Développement</div>
-          <div class="project-name">Église du Christ — Site Responsive</div>
-          <a href="https://egliseduchrist.ci/" target="_blank" rel="noopener" class="project-link">Voir le projet →</a>
+          <div class="project-cat" data-fr="Web Design · Développement" data-en="Web Design · Development">Web Design · Développement</div>
+          <div class="project-name" data-fr="Église du Christ — Site Responsive" data-en="Church of Christ — Responsive Website">Église du Christ — Site Responsive</div>
+          <a href="https://egliseduchrist.ci/" target="_blank" rel="noopener" class="project-link" data-fr="Voir le projet →" data-en="View project →">Voir le projet →</a>
         </div>
       </div>
 
@@ -187,12 +188,11 @@
       <div class="project-card medium reveal">
         <div class="project-thumb">
           <img src="assets/images/project-afro.jpg" alt="Afro Cuisine" onerror="this.style.display='none'" />
-          <!-- <div class="thumb-placeholder">AFRO CUISINE & CAFÉ</div> -->
         </div>
         <div class="project-overlay">
-          <div class="project-cat">Branding · Identité Visuelle</div>
+          <div class="project-cat" data-fr="Branding · Identité Visuelle" data-en="Branding · Visual Identity">Branding · Identité Visuelle</div>
           <div class="project-name">Afro Cuisine & Café</div>
-          <a href="https://drive.google.com/drive/folders/10prLOG8Cc5asf7DaCUToh7JH7liYh45V?usp=sharing" target="_blank" rel="noopener" class="project-link">Voir le projet →</a>
+          <a href="https://drive.google.com/drive/folders/10prLOG8Cc5asf7DaCUToh7JH7liYh45V?usp=sharing" target="_blank" rel="noopener" class="project-link" data-fr="Voir le projet →" data-en="View project →">Voir le projet →</a>
         </div>
       </div>
 
@@ -200,71 +200,55 @@
       <div class="project-card medium reveal reveal-delay-1">
         <div class="project-thumb">
           <img src="assets/images/project-catalog.jpg" alt="Djastice Catalog" onerror="this.style.display='none'" />
-          <!-- <div class="thumb-placeholder">DJASTICE CATALOG</div> -->
         </div>
         <div class="project-overlay">
-          <div class="project-cat">Print · Design Éditorial</div>
-          <div class="project-name">Djastice — Catalogue Officiel</div>
-          <a href="https://drive.google.com/file/d/1AeRmK9LoyWSllM20VreXWHHC5bbomnoB/view?usp=sharing" target="_blank" rel="noopener" class="project-link">Voir le projet →</a>
+          <div class="project-cat" data-fr="Print · Design Éditorial" data-en="Print · Editorial Design">Print · Design Éditorial</div>
+          <div class="project-name" data-fr="Djastice — Catalogue Officiel" data-en="Djastice — Official Catalogue">Djastice — Catalogue Officiel</div>
+          <a href="https://drive.google.com/file/d/1AeRmK9LoyWSllM20VreXWHHC5bbomnoB/view?usp=sharing" target="_blank" rel="noopener" class="project-link" data-fr="Voir le projet →" data-en="View project →">Voir le projet →</a>
         </div>
       </div>
 
-     <!-- Project 5 — Motion/Social Media -->
-      <!-- <div class="project-card full reveal">
-        <div class="project-thumb">
-          <img src="assets/images/project-motion.jpg" alt="Motion Design" onerror="this.style.display='none'" />
-          <div class="thumb-placeholder">MOTION DESIGN & SOCIAL MEDIA</div>
+      <!-- Project 5 — Motion -->
+      <div class="project-card full reveal">
+        <div class="project-thumb motion-thumb">
+          <div class="mo-bg"></div>
+          <div class="mo-ring mo-ring-1"></div>
+          <div class="mo-ring mo-ring-2"></div>
+          <div class="mo-ring mo-ring-3"></div>
+          <div class="mo-circle mo-c1"></div>
+          <div class="mo-circle mo-c2"></div>
+          <div class="mo-circle mo-c3"></div>
+          <div class="mo-line mo-l1"></div>
+          <div class="mo-line mo-l2"></div>
+          <div class="mo-line mo-l3"></div>
+          <div class="mo-dot mo-d1"></div>
+          <div class="mo-dot mo-d2"></div>
+          <div class="mo-dot mo-d3"></div>
+          <div class="mo-dot mo-d4"></div>
+          <div class="mo-label">MOTION DESIGN</div>
         </div>
         <div class="project-overlay">
-          <div class="project-cat">Motion Design · Animation</div>
-          <div class="project-name">Campagnes Digitales & Contenus Animés</div>
-          <a href="https://www.pinterest.com/oforiandrew76/" target="_blank" rel="noopener" class="project-link">Voir sur Pinterest →</a>
+          <div class="project-cat" data-fr="Motion Design · Animation" data-en="Motion Design · Animation">Motion Design · Animation</div>
+          <div class="project-name" data-fr="Campagnes Digitales & Contenus Animés" data-en="Digital Campaigns & Animated Content">Campagnes Digitales & Contenus Animés</div>
+          <a href="https://www.pinterest.com/oforiandrew76/_created/" target="_blank" rel="noopener" class="project-link" data-fr="Voir sur Pinterest →" data-en="View on Pinterest →">Voir sur Pinterest →</a>
         </div>
-      </div> -->
+      </div>
 
-     <!-- Project 5 — Motion/Social Media -->
-<div class="project-card full reveal">
-  <div class="project-thumb motion-thumb">
-    <div class="mo-bg"></div>
-    <div class="mo-ring mo-ring-1"></div>
-    <div class="mo-ring mo-ring-2"></div>
-    <div class="mo-ring mo-ring-3"></div>
-    <div class="mo-circle mo-c1"></div>
-    <div class="mo-circle mo-c2"></div>
-    <div class="mo-circle mo-c3"></div>
-    <div class="mo-line mo-l1"></div>
-    <div class="mo-line mo-l2"></div>
-    <div class="mo-line mo-l3"></div>
-    <div class="mo-dot mo-d1"></div>
-    <div class="mo-dot mo-d2"></div>
-    <div class="mo-dot mo-d3"></div>
-    <div class="mo-dot mo-d4"></div>
-    <div class="mo-label">MOTION DESIGN</div>
-  </div>
-  <div class="project-overlay">
-    <div class="project-cat">Motion Design · Animation</div>
-    <div class="project-name">Campagnes Digitales & Contenus Animés</div>
-    <a href="https://www.pinterest.com/oforiandrew76/_created/" target="_blank" rel="noopener" class="project-link">Voir sur Pinterest →</a>
-  </div>
-</div>
-
-  
     </div>
   </section>
 
   <!-- Experience -->
   <section id="experience">
-    <div class="section-label reveal">Parcours</div>
-    <h2 class="section-title reveal reveal-delay-1"><em>Expériences</em><br>& Formation</h2>
-
+    <div class="section-label reveal" data-fr="Parcours" data-en="Journey">Parcours</div>
+    <h2 class="section-title reveal reveal-delay-1" data-fr="<em>Expériences</em><br>& Formation" data-en="<em>Experience</em><br>& Education"><em>Expériences</em><br>& Formation</h2>
     <div class="exp-list">
 
       <div class="exp-item reveal">
-        <div class="exp-date">2023 – Présent</div>
+        <div class="exp-date">2023 – Present</div>
         <div class="exp-body">
-          <div class="exp-role">Creative Designer Freelance</div>
+          <div class="exp-role" data-fr="Creative Designer Freelance" data-en="Freelance Creative Designer">Creative Designer Freelance</div>
           <div class="exp-company">Major Digitals</div>
-          <p class="exp-desc">Réalisation de projets freelance en web design, branding et design graphique. Collaboration directe avec des clients pour transformer leurs besoins en solutions visuelles fonctionnelles et esthétiques.</p>
+          <p class="exp-desc" data-fr="Réalisation de projets freelance en web design, branding et design graphique. Collaboration directe avec des clients pour transformer leurs besoins en solutions visuelles fonctionnelles et esthétiques." data-en="Delivering freelance projects in web design, branding and graphic design. Working directly with clients to transform their needs into functional and aesthetic visual solutions.">Réalisation de projets freelance en web design, branding et design graphique. Collaboration directe avec des clients pour transformer leurs besoins en solutions visuelles fonctionnelles et esthétiques.</p>
           <div class="exp-tags">
             <span class="exp-tag">Web Design</span>
             <span class="exp-tag">Branding</span>
@@ -274,11 +258,11 @@
       </div>
 
       <div class="exp-item reveal">
-        <div class="exp-date">Juil. 2024 – Présent</div>
+        <div class="exp-date">Jul. 2024 – Present</div>
         <div class="exp-body">
-          <div class="exp-role">Web Designer & Développeur</div>
+          <div class="exp-role" data-fr="Web Designer & Développeur" data-en="Web Designer & Developer">Web Designer & Développeur</div>
           <div class="exp-company">Church of Christ — Abidjan</div>
-          <p class="exp-desc">Conception, développement et maintenance d'un site web responsive. Support au culte numérique, aux études bibliques et à l'engagement communautaire en ligne.</p>
+          <p class="exp-desc" data-fr="Conception, développement et maintenance d'un site web responsive. Support au culte numérique, aux études bibliques et à l'engagement communautaire en ligne." data-en="Design, development and maintenance of a responsive website. Supporting digital worship, Bible studies and online community engagement.">Conception, développement et maintenance d'un site web responsive. Support au culte numérique, aux études bibliques et à l'engagement communautaire en ligne.</p>
           <div class="exp-tags">
             <span class="exp-tag">WordPress</span>
             <span class="exp-tag">Responsive Design</span>
@@ -290,40 +274,39 @@
       <div class="exp-item reveal">
         <div class="exp-date">Sep. 2023 – Jan. 2025</div>
         <div class="exp-body">
-          <div class="exp-role">Designer Graphique & Digital</div>
+          <div class="exp-role" data-fr="Designer Graphique & Digital" data-en="Graphic & Digital Designer">Designer Graphique & Digital</div>
           <div class="exp-company">Djastice</div>
-          <p class="exp-desc">Création de contenus visuels et branding pour plusieurs campagnes digitales et événementielles. Gestion de la cohérence visuelle des plateformes numériques et maintenance du site web.</p>
+          <p class="exp-desc" data-fr="Création de contenus visuels et branding pour plusieurs campagnes digitales et événementielles. Gestion de la cohérence visuelle des plateformes numériques et maintenance du site web." data-en="Creating visual content and branding for digital and event campaigns. Managing visual consistency across digital platforms and website maintenance.">Création de contenus visuels et branding pour plusieurs campagnes digitales et événementielles. Gestion de la cohérence visuelle des plateformes numériques et maintenance du site web.</p>
           <div class="exp-tags">
             <span class="exp-tag">Adobe Suite</span>
-            <span class="exp-tag">Campagnes Digitales</span>
+            <span class="exp-tag" data-fr="Campagnes Digitales" data-en="Digital Campaigns">Campagnes Digitales</span>
             <span class="exp-tag">Branding</span>
           </div>
         </div>
       </div>
 
       <div class="exp-item reveal">
-        <div class="exp-date">Juin 2022 – Août 2023</div>
+        <div class="exp-date">Jun. 2022 – Aug. 2023</div>
         <div class="exp-body">
-          <div class="exp-role">Gestionnaire de Contenu & Technicien</div>
+          <div class="exp-role" data-fr="Gestionnaire de Contenu & Technicien" data-en="Content Manager & Technician">Gestionnaire de Contenu & Technicien</div>
           <div class="exp-company">LVIK TV</div>
-          <p class="exp-desc">Gestion des plateformes YouTube et Facebook. Production et diffusion de contenus via OBS Studio. Appui technique lors des diffusions en direct.</p>
+          <p class="exp-desc" data-fr="Gestion des plateformes YouTube et Facebook. Production et diffusion de contenus via OBS Studio. Appui technique lors des diffusions en direct." data-en="Managing YouTube and Facebook platforms. Producing and broadcasting content via OBS Studio. Technical support during live streams.">Gestion des plateformes YouTube et Facebook. Production et diffusion de contenus via OBS Studio. Appui technique lors des diffusions en direct.</p>
           <div class="exp-tags">
             <span class="exp-tag">OBS Studio</span>
-            <span class="exp-tag">Production Vidéo</span>
-            <span class="exp-tag">Réseaux Sociaux</span>
+            <span class="exp-tag" data-fr="Production Vidéo" data-en="Video Production">Production Vidéo</span>
+            <span class="exp-tag" data-fr="Réseaux Sociaux" data-en="Social Media">Réseaux Sociaux</span>
           </div>
         </div>
       </div>
 
-      <!-- Education -->
       <div class="exp-item reveal">
         <div class="exp-date">2024 – 2025</div>
         <div class="exp-body">
-          <div class="exp-role">Master II — Développeur d'applications</div>
+          <div class="exp-role" data-fr="Master II — Développeur d'applications" data-en="Master's Degree — Application Developer">Master II — Développeur d'applications</div>
           <div class="exp-company">Institut de Technologie d'Abidjan (ITA)</div>
-          <p class="exp-desc">Spécialisation en développement d'applications web et mobiles modernes.</p>
+          <p class="exp-desc" data-fr="Spécialisation en développement d'applications web et mobiles modernes." data-en="Specialization in modern web and mobile application development.">Spécialisation en développement d'applications web et mobiles modernes.</p>
           <div class="exp-tags">
-            <span class="exp-tag">Formation</span>
+            <span class="exp-tag" data-fr="Formation" data-en="Education">Formation</span>
             <span class="exp-tag">Master II</span>
           </div>
         </div>
@@ -336,11 +319,10 @@
   <section id="contact" class="contact-section">
     <div class="contact-info">
       <div class="section-label reveal">Contact</div>
-      <h2 class="section-title reveal reveal-delay-1">Travaillons<br><em>ensemble</em></h2>
-      <p style="color:rgba(245,240,232,0.6); margin-bottom: 3rem;" class="reveal reveal-delay-2">
+      <h2 class="section-title reveal reveal-delay-1" data-fr="Travaillons<br><em>ensemble</em>" data-en="Let's work<br><em>together</em>">Travaillons<br><em>ensemble</em></h2>
+      <p class="reveal reveal-delay-2" style="color:rgba(245,240,232,0.6); margin-bottom: 3rem;" data-fr="Un projet en tête ? Je suis disponible pour des missions freelance en web design, branding et motion design." data-en="Got a project in mind? I'm available for freelance missions in web design, branding and motion design.">
         Un projet en tête ? Je suis disponible pour des missions freelance en web design, branding et motion design.
       </p>
-
       <div class="contact-item reveal">
         <div class="contact-icon">✉</div>
         <div>
@@ -348,25 +330,21 @@
           <a href="mailto:oforiandrew76@gmail.com" class="contact-detail-val">oforiandrew76@gmail.com</a>
         </div>
       </div>
-
       <div class="contact-item reveal">
         <div class="contact-icon">📞</div>
         <div>
-          <div class="contact-detail-label">Téléphone</div>
-          <a href="tel:+233536203006" class="contact-detail-val">+233 53 620 3006</a>
-          <br>
+          <div class="contact-detail-label" data-fr="Téléphone" data-en="Phone">Téléphone</div>
+          <a href="tel:+233536203006" class="contact-detail-val">+233 53 620 3006</a><br>
           <a href="tel:+2250700201224" class="contact-detail-val">+225 07 00 20 1224</a>
         </div>
       </div>
-
       <div class="contact-item reveal">
         <div class="contact-icon">🌍</div>
         <div>
-          <div class="contact-detail-label">Localisation</div>
+          <div class="contact-detail-label" data-fr="Localisation" data-en="Location">Localisation</div>
           <span class="contact-detail-val">Ghana · Côte d'Ivoire</span>
         </div>
       </div>
-
       <div class="contact-item reveal">
         <div class="contact-icon">in</div>
         <div>
@@ -379,18 +357,18 @@
     <div class="contact-form reveal reveal-delay-2">
       <form id="contact-form" action="https://formspree.io/f/mdajreky" method="POST">
         <div class="form-group">
-          <input type="text" name="name" placeholder="Votre nom" required />
+          <input type="text" name="name" data-placeholder-fr="Votre nom" data-placeholder-en="Your name" placeholder="Votre nom" required />
         </div>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Votre email" required />
+          <input type="email" name="email" data-placeholder-fr="Votre email" data-placeholder-en="Your email" placeholder="Votre email" required />
         </div>
         <div class="form-group">
-          <input type="text" name="subject" placeholder="Sujet du projet" />
+          <input type="text" name="subject" data-placeholder-fr="Sujet du projet" data-placeholder-en="Project subject" placeholder="Sujet du projet" />
         </div>
         <div class="form-group">
-          <textarea name="message" placeholder="Décrivez votre projet..." required></textarea>
+          <textarea name="message" data-placeholder-fr="Décrivez votre projet..." data-placeholder-en="Describe your project..." placeholder="Décrivez votre projet..." required></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%; text-align:center; font-size:0.85rem; letter-spacing:0.12em; padding:1rem;">
+        <button type="submit" class="btn-primary" id="submit-btn" style="width:100%; text-align:center; font-size:0.85rem; letter-spacing:0.12em; padding:1rem;" data-fr="Envoyer le message" data-en="Send message">
           Envoyer le message
         </button>
       </form>
@@ -400,7 +378,7 @@
   <!-- Footer -->
   <footer>
     <div class="footer-left">Andrew Ofori</div>
-    <div class="footer-copy">© 2026 — Majordigitals. Tous droits réservés.</div>
+    <div class="footer-copy">© 2026 — Majordigitals. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></div>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/andrew-ofori-amponsah-31786a2b0" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.pinterest.com/oforiandrew76/" target="_blank" rel="noopener">Pinterest</a>
@@ -411,6 +389,3 @@
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-
-
