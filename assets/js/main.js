@@ -51,6 +51,13 @@ let currentLang = localStorage.getItem('lang') || 'fr';
 function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
+  // Relance le typewriter avec la bonne langue
+  const typewriterEl = document.querySelector('.hero-tag');
+  if (typewriterEl) {
+    typewriterEl.textContent = '';
+    i = 0; // remet à zéro
+    type(); // relance
+  }
   document.documentElement.lang = lang;
 
   // Update all elements with data-fr / data-en
