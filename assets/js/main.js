@@ -38,19 +38,54 @@ document.querySelectorAll('a, button, .project-card').forEach(el => {
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 
-// Contact form
-const form = document.getElementById('contact-form');
+// =============================================
+// BILINGUAL SYSTEM (FR / EN)
+// =============================================
+let currentLang = localStorage.getItem('lang') || 'fr';
 
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+
+  // Update all elements with data-fr / data-en
+  document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + lang);
+    if (text) el.innerHTML = text;
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-placeholder-fr][data-placeholder-en]').forEach(el => {
+    el.placeholder = el.getAttribute('data-placeholder-' + lang);
+  });
+
+  // Update lang button active state
+  const btn = document.getElementById('lang-btn');
+  if (btn) {
+    btn.querySelector('.lang-fr').classList.toggle('lang-active', lang === 'fr');
+    btn.querySelector('.lang-en').classList.toggle('lang-active', lang === 'en');
+  }
+}
+
+// Init on load
+applyLanguage(currentLang);
+
+// Toggle on click
+document.getElementById('lang-btn')?.addEventListener('click', () => {
+  applyLanguage(currentLang === 'fr' ? 'en' : 'fr');
+});
+
+// =============================================
+// CONTACT FORM — Mobile WhatsApp / Desktop Email
+// =============================================
+const form = document.getElementById('contact-form');
 const whatsappNumber = "233536203006";
 
-// Detect mobile device
 function isMobileDevice() {
   return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
@@ -58,18 +93,14 @@ function isMobileDevice() {
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const btn = form.querySelector('button[type="submit"]');
+    const btn = document.getElementById('submit-btn');
     const originalText = btn.textContent;
-
-    btn.textContent = "Envoi...";
+    btn.textContent = currentLang === 'fr' ? "Envoi..." : "Sending...";
     btn.disabled = true;
 
     const formData = new FormData(form);
-
-    // Extract form values
-    const name = formData.get("name");
-    const email = formData.get("email");
+    const name    = formData.get("name");
+    const email   = formData.get("email");
     const subject = formData.get("subject") || "No subject";
     const message = formData.get("message");
 
@@ -85,50 +116,35 @@ ${message}`;
 
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // =========================
-    // 📱 MOBILE → WhatsApp FIRST
-    // =========================
+    // MOBILE → WhatsApp
     if (isMobileDevice()) {
-      btn.textContent = "Ouverture WhatsApp...";
-
+      btn.textContent = currentLang === 'fr' ? "Ouverture WhatsApp..." : "Opening WhatsApp...";
       window.open(whatsappURL, "_blank");
-
       setTimeout(() => {
-        btn.textContent = "Envoyé via WhatsApp ✓";
+        btn.textContent = currentLang === 'fr' ? "Envoyé via WhatsApp ✓" : "Sent via WhatsApp ✓";
         form.reset();
         btn.disabled = false;
       }, 1500);
-
       return;
     }
 
-    // =========================
-    // 💻 DESKTOP → EMAIL FIRST
-    // =========================
+    // DESKTOP → Email first, WhatsApp fallback
     try {
       const response = await fetch(form.action, {
         method: "POST",
         body: formData,
-        headers: {
-          Accept: "application/json"
-        }
+        headers: { Accept: "application/json" }
       });
-
       if (response.ok) {
-        btn.textContent = "Message envoyé ✓";
+        btn.textContent = currentLang === 'fr' ? "Message envoyé ✓" : "Message sent ✓";
         form.reset();
       } else {
         throw new Error("Formspree failed");
       }
-
     } catch (error) {
-      console.log("Email failed → WhatsApp fallback");
-
-      btn.textContent = "Redirection WhatsApp...";
-
+      btn.textContent = currentLang === 'fr' ? "Redirection WhatsApp..." : "Redirecting to WhatsApp...";
       window.open(whatsappURL, "_blank");
-
-      btn.textContent = "Envoyé via WhatsApp ✓";
+      btn.textContent = currentLang === 'fr' ? "Envoyé via WhatsApp ✓" : "Sent via WhatsApp ✓";
     }
 
     setTimeout(() => {
@@ -137,9 +153,33 @@ ${message}`;
     }, 3000);
   });
 }
-// Smooth nav highlight
+
+// =============================================
+// NAV — Burger menu
+// =============================================
+const burger  = document.getElementById('burger');
+const navMenu = document.getElementById('nav-menu');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  navMenu.classList.toggle('open');
+  document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : '';
+});
+
+document.querySelectorAll('.nav-close').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('open');
+    navMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// =============================================
+// NAV — Scroll highlight (disabled when menu open)
+// =============================================
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
+
 window.addEventListener('scroll', () => {
   if (navMenu.classList.contains('open')) return;
   let current = '';
@@ -148,20 +188,5 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
-  });
-});
-const burger = document.getElementById('burger');
-const navMenu = document.getElementById('nav-menu');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  navMenu.classList.toggle('open');
-  // empêche le scroll quand menu ouvert
-  document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : '';
-});
-document.querySelectorAll('.nav-close').forEach(link => {
-  link.addEventListener('click', () => {
-    burger.classList.remove('open');
-    navMenu.classList.remove('open');
-    document.body.style.overflow = '';
   });
 });
