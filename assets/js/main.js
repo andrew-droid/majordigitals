@@ -44,6 +44,28 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(el => observer.observe(el));
 
 // =============================================
+// TYPEWRITER — bilingual
+// =============================================
+const typewriterEl = document.querySelector('.hero-tag');
+let twIndex = 0;
+let twTimer = null;
+
+function startTypewriter() {
+  clearTimeout(twTimer);
+  twIndex = 0;
+  if (!typewriterEl) return;
+  typewriterEl.textContent = '';
+  const text = currentLang === 'en' ? 'Creative Designer' : 'Creative Designer';
+  function type() {
+    if (twIndex <= text.length) {
+      typewriterEl.textContent = text.slice(0, twIndex++);
+      twTimer = setTimeout(type, 100);
+    }
+  }
+  type();
+}
+
+// =============================================
 // BILINGUAL SYSTEM (FR / EN)
 // =============================================
 let currentLang = localStorage.getItem('lang') || 'fr';
@@ -51,41 +73,79 @@ let currentLang = localStorage.getItem('lang') || 'fr';
 function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('lang', lang);
-  // Relance le typewriter avec la bonne langue
-  const typewriterEl = document.querySelector('.hero-tag');
-  if (typewriterEl) {
-    typewriterEl.textContent = '';
-    i = 0; // remet à zéro
-    type(); // relance
-  }
   document.documentElement.lang = lang;
 
-  // Update all elements with data-fr / data-en
   document.querySelectorAll('[data-fr][data-en]').forEach(el => {
     const text = el.getAttribute('data-' + lang);
     if (text) el.innerHTML = text;
   });
 
-  // Update placeholders
   document.querySelectorAll('[data-placeholder-fr][data-placeholder-en]').forEach(el => {
     el.placeholder = el.getAttribute('data-placeholder-' + lang);
   });
 
-  // Update lang button active state
   const btn = document.getElementById('lang-btn');
   if (btn) {
     btn.querySelector('.lang-fr').classList.toggle('lang-active', lang === 'fr');
     btn.querySelector('.lang-en').classList.toggle('lang-active', lang === 'en');
   }
+
+  if (typewriterEl) startTypewriter();
 }
 
-// Init on load
 applyLanguage(currentLang);
 
-// Toggle on click
 document.getElementById('lang-btn')?.addEventListener('click', () => {
   applyLanguage(currentLang === 'fr' ? 'en' : 'fr');
 });
+
+// Typewriter démarre après le loader
+setTimeout(startTypewriter, 2000);
+
+// =============================================
+// PARALLAX — Hero image
+// =============================================
+const heroImg = document.querySelector('.hero-image-wrap img');
+if (heroImg) {
+  heroImg.style.willChange = 'transform';
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroImg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+    }
+  }, { passive: true });
+}
+
+// =============================================
+// COUNTER — Stats animation
+// =============================================
+function animateCounter(el, target) {
+  const duration = 1500;
+  const startTime = performance.now();
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = '+' + Math.floor(eased * target);
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = '+' + target;
+  }
+  requestAnimationFrame(update);
+}
+
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const targets = [3, 15, 10];
+      document.querySelectorAll('.stat-num').forEach((el, i) => {
+        animateCounter(el, targets[i]);
+      });
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.hero-stats');
+if (statsSection) statsObserver.observe(statsSection);
 
 // =============================================
 // CONTACT FORM — Mobile WhatsApp / Desktop Email
@@ -123,7 +183,6 @@ ${message}`;
 
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
-    // MOBILE → WhatsApp
     if (isMobileDevice()) {
       btn.textContent = currentLang === 'fr' ? "Ouverture WhatsApp..." : "Opening WhatsApp...";
       window.open(whatsappURL, "_blank");
@@ -135,7 +194,6 @@ ${message}`;
       return;
     }
 
-    // DESKTOP → Email first, WhatsApp fallback
     try {
       const response = await fetch(form.action, {
         method: "POST",
@@ -182,7 +240,7 @@ document.querySelectorAll('.nav-close').forEach(link => {
 });
 
 // =============================================
-// NAV — Scroll highlight (disabled when menu open)
+// NAV — Scroll highlight
 // =============================================
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
@@ -195,67 +253,5 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
-
-// TYPEWRITER — bilingual
-const typewriterEl = document.querySelector('.hero-tag');
-let twIndex = 0;
-let twTimer = null;
-
-function startTypewriter() {
-  clearTimeout(twTimer);
-  twIndex = 0;
-  typewriterEl.textContent = '';
-  const text = currentLang === 'en' ? 'Creative Designer' : 'Creative Designer';
-  function type() {
-    if (twIndex <= text.length) {
-      typewriterEl.textContent = text.slice(0, twIndex++);
-      twTimer = setTimeout(type, 100);
-    }
-  }
-  type();
-}
-
-if (typewriterEl) {
-  setTimeout(startTypewriter, 2000);
-}
-// PARALLAX
-const heroImg = document.querySelector('.hero-image-wrap img');
-if (heroImg) {
-  heroImg.style.willChange = 'transform';
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-      heroImg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
-    }
-  }, { passive: true });
-}
-    
-// COUNTER
-function animateCounter(el, target) {
-  let start = 0;
-  const duration = 1500;
-  const startTime = performance.now();
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = '+' + Math.floor(eased * target);
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = '+' + target;
-  }
-  requestAnimationFrame(update);
-}
-
-const statsObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const targets = [3, 15, 10];
-      document.querySelectorAll('.stat-num').forEach((el, i) => {
-        animateCounter(el, targets[i]);
-      });
-      statsObserver.disconnect();
-    }
   });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector('.hero-stats');
-if (statsSection) statsObserver.observe(statsSection);
+});
