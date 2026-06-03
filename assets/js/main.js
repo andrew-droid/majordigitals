@@ -188,5 +188,77 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
+
+    // =============================================
+// TYPEWRITER — Hero tag
+// =============================================
+const typewriterEl = document.querySelector('.hero-tag');
+if (typewriterEl) {
+  const textFR = 'Creative Designer';
+  const textEN = 'Creative Designer';
+  let i = 0;
+  let isDeleting = false;
+
+  function type() {
+    const text = currentLang === 'fr' ? textFR : textEN;
+    if (!isDeleting) {
+      typewriterEl.textContent = text.slice(0, i++);
+      if (i > text.length) {
+        setTimeout(() => { isDeleting = true; type(); }, 2500);
+        return;
+      }
+    } else {
+      typewriterEl.textContent = text.slice(0, i--);
+      if (i < 0) {
+        isDeleting = false;
+        i = 0;
+      }
+    }
+    setTimeout(type, isDeleting ? 50 : 100);
+  }
+  setTimeout(type, 2000); // démarre après le loader
+}
+
+// =============================================
+// PARALLAX — Hero image
+// =============================================
+const heroImg = document.querySelector('.hero-image-wrap img');
+if (heroImg) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    heroImg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.1)`;
+  }, { passive: true });
+}
+
+// =============================================
+// COUNTER — Stats animation
+// =============================================
+function animateCounter(el, target, duration = 1500) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) {
+      el.textContent = '+' + target;
+      clearInterval(timer);
+    } else {
+      el.textContent = '+' + Math.floor(start);
+    }
+  }, 16);
+}
+
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const statNums = document.querySelectorAll('.stat-num');
+      const targets = [3, 15, 10];
+      statNums.forEach((el, i) => animateCounter(el, targets[i]));
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.hero-stats');
+if (statsSection) statsObserver.observe(statsSection);
   });
 });
