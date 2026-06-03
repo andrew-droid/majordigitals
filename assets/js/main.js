@@ -189,70 +189,62 @@ window.addEventListener('scroll', () => {
   navLinks.forEach(a => {
     a.style.opacity = a.getAttribute('href') === '#' + current ? '1' : '0.7';
 
-    // =============================================
-// TYPEWRITER — Hero tag
-// =============================================
+// TYPEWRITER — bilingual
 const typewriterEl = document.querySelector('.hero-tag');
-if (typewriterEl) {
-  const textFR = 'Creative Designer';
-  const textEN = 'Creative Designer';
-  let i = 0;
-  let isDeleting = false;
+let twIndex = 0;
+let twTimer = null;
 
+function startTypewriter() {
+  clearTimeout(twTimer);
+  twIndex = 0;
+  typewriterEl.textContent = '';
+  const text = currentLang === 'en' ? 'Creative Designer' : 'Creative Designer';
   function type() {
-    const text = currentLang === 'fr' ? textFR : textEN;
-    if (!isDeleting) {
-      typewriterEl.textContent = text.slice(0, i++);
-      if (i > text.length) {
-        setTimeout(() => { isDeleting = true; type(); }, 2500);
-        return;
-      }
-    } else {
-      typewriterEl.textContent = text.slice(0, i--);
-      if (i < 0) {
-        isDeleting = false;
-        i = 0;
-      }
+    if (twIndex <= text.length) {
+      typewriterEl.textContent = text.slice(0, twIndex++);
+      twTimer = setTimeout(type, 100);
     }
-    setTimeout(type, isDeleting ? 50 : 100);
   }
-  setTimeout(type, 2000); // démarre après le loader
+  type();
 }
 
-// =============================================
-// PARALLAX — Hero image
-// =============================================
+if (typewriterEl) {
+  setTimeout(startTypewriter, 2000);
+}
+// PARALLAX
 const heroImg = document.querySelector('.hero-image-wrap img');
 if (heroImg) {
+  heroImg.style.willChange = 'transform';
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    heroImg.style.transform = `translateY(${scrollY * 0.25}px) scale(1.1)`;
+    if (window.scrollY < window.innerHeight) {
+      heroImg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+    }
   }, { passive: true });
 }
-
-// =============================================
-// COUNTER — Stats animation
-// =============================================
-function animateCounter(el, target, duration = 1500) {
+    
+// COUNTER
+function animateCounter(el, target) {
   let start = 0;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= target) {
-      el.textContent = '+' + target;
-      clearInterval(timer);
-    } else {
-      el.textContent = '+' + Math.floor(start);
-    }
-  }, 16);
+  const duration = 1500;
+  const startTime = performance.now();
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = '+' + Math.floor(eased * target);
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = '+' + target;
+  }
+  requestAnimationFrame(update);
 }
 
 const statsObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const statNums = document.querySelectorAll('.stat-num');
       const targets = [3, 15, 10];
-      statNums.forEach((el, i) => animateCounter(el, targets[i]));
+      document.querySelectorAll('.stat-num').forEach((el, i) => {
+        animateCounter(el, targets[i]);
+      });
       statsObserver.disconnect();
     }
   });
@@ -260,5 +252,3 @@ const statsObserver = new IntersectionObserver(entries => {
 
 const statsSection = document.querySelector('.hero-stats');
 if (statsSection) statsObserver.observe(statsSection);
-  });
-});
